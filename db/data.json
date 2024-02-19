@@ -1,0 +1,168 @@
+{
+    "categories": [
+      {
+        "id": 1,
+        "name": "Fruit"
+      },
+      {
+        "id": 2,
+        "name": "Vegetables"
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "name": "Nho Ninh Thuận",
+        "cate_id": 1,
+        "price": "100000",
+        "detail": "Chất lượng đến từ mảnh đất Ninh Thuận nắng và gió",
+        "img": "../img/best-product-5.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Dâu Đà Lạt",
+        "cate_id": 1,
+        "price": "200000",
+        "detail": "Dâu Đà Lạt không ngon không lấy tiền",
+        "img": "../img/featur-2.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Quả mâm xôi",
+        "cate_id": 1,
+        "price": "50000",
+        "detail": "Việt Nam loại cây này phổ biến ở Lâm Đồng, Đà Lạt",
+        "img": "../img/best-product-2.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Quả mơ",
+        "cate_id": 1,
+        "price": "20000",
+        "detail": "Cung cấp khoáng chất và vitamin dồi dào",
+        "img": "../img/best-product-4.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Chuối Tây Sơn",
+        "cate_id": 1,
+        "price": "10000",
+        "detail": "Cung cấp khoáng chất và vitamin dồi dào",
+        "img": "../img/best-product-3.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Cam Sành ",
+        "cate_id": 1,
+        "price": "30000",
+        "detail": "Cung cấp vitamin C dồi dào",
+        "img": "../img/best-product-1.jpg"
+      },
+      {
+        "id": 11,
+        "name": "Táo",
+        "cate_id": 2,
+        "price": "50000",
+        "detail": "Táo nhập khẩu",
+        "img": "../img/featur-1.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Ớt chuông",
+        "cate_id": 2,
+        "price": "20000",
+        "detail": "Ớt chuông không cay lắm",
+        "img": "../img/vegetable-item-4.jpg"
+      },
+      {
+        "id": 8,
+        "name": "Khoai Tây",
+        "cate_id": 2,
+        "price": "40000",
+        "detail": "Khoai tây siêu to khổng lồ",
+        "img": "../img/vegetable-item-5.jpg"
+      },
+      {
+        "id": 9,
+        "name": "Mùi tây",
+        "cate_id": 2,
+        "price": "20000",
+        "detail": "Mùi Tây siêu to khổng lồ",
+        "img": "../img/vegetable-item-6.jpg"
+      },
+      {
+        "id": 10,
+        "name": "Cà Chua",
+        "cate_id": 2,
+        "price": "70000",
+        "detail": "Cà Chua nhập khẩu",
+        "img": "../img/vegetable-item-1.jpg"
+      }
+    ],
+    "orders": [
+      {
+        "id": 1,
+        "customer_name": "Phuc",
+        "customer_address": "08 ho quy ly",
+        "customer_email": "phuc@gmail.com",
+        "customer_phone_number": "123456",
+        "created_date": "2024-12-01",
+        "status": "pending"
+      },
+      {
+        "id": 2,
+        "customer_name": "duong",
+        "customer_address": "99 ho quy ly",
+        "customer_email": "phuc@gmail.com",
+        "customer_phone_number": "123456",
+        "created_date": "2024-12-01",
+        "status": "pending"
+      },
+      {
+        "id": 3,
+        "customer_name": "Phuc",
+        "customer_address": " ho quy ly",
+        "customer_email": "phuc@gmail.com",
+        "customer_phone_number": "123456",
+        "created_date": "2024-12-01",
+        "status": "pending"
+      },
+      {
+        "id": 4,
+        "customer_name": "Phuc",
+        "customer_address": "99 huynh tan phat",
+        "customer_email": "phuc@gmail.com",
+        "customer_phone_number": "123456",
+        "created_date": "2024-12-01",
+        "status": "pending"
+      }
+    ],
+    "order_details": [
+      {
+        "order_id": 1,
+        "product_id": 1,
+        "quantity": 1,
+        "unit_price": 10000
+      },
+      {
+        "order_id": 2,
+        "product_id": 2,
+        "quantity": 2,
+        "unit_price": 15000
+      },
+      {
+        "order_id": 3,
+        "product_id": 3,
+        "quantity": 3,
+        "unit_price": 5000
+      },
+      {
+        "order_id": 4,
+        "product_id": 4,
+        "quantity": 4,
+        "unit_price": 9999
+      }
+    ]
+    
+  }
+  

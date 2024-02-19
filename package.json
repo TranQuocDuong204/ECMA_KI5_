@@ -1,0 +1,25 @@
+{
+  "name": "asm",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "vite": "5.0.8"
+  },
+  "dependencies": {
+    "axios": "^1.6.5",
+    "bootstrap": "^5.3.2",
+    "jquery": "^3.7.1",
+    "navigo": "^8.11.1",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^6.6.1",
+    "toastify": "^2.0.1",
+    "toastify-js": "^1.12.0"
+  }
+}
