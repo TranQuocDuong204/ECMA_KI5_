@@ -1,0 +1,143 @@
+<h1 class="pt-4">Quản Lý Sản Phẩm</h1>
+<div class="container d-flex p-2 bd-highlight">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Stt</th>
+            <th scope="col">Ảnh</th>
+            <th scope="col">Tên Sản Phẩm</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Mô Tả</th>
+            <th scope="col">Xử Lý</th>
+          </tr>
+        </thead>
+        <tbody class="table-data-product">
+          <!-- <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr> -->
+        </tbody>
+      </table>      
+</div>
+
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Thêm Mới Sản Phẩm
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title model-up nameAdd" id="exampleModalLabel">Thêm mới</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Ảnh</label>
+            <input type='file' id="updateFile"/>
+            <br><img id="myImg1" src="#" accept="image/*">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tên Sản Phẩm</label>
+            <input name="namepro" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Giá</label>
+            <input name="price" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Mô Tả</label>
+            <input name="detail" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Danh mục sản phẩm</label>
+            <br>
+            <select class="price-range-class" style="border: 1px solid #e0e0e0;outline: 0 !important; border-radius: 4px; padding: 10px;">
+              <option></option>
+              <option value="1">Fruit</option>
+              <option value="2">Vegetable</option>
+              
+              <!-- Thêm các option khác tùy theo nhu cầu của bạn -->
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" id="add-pro">Thêm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- modal update -->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="update-pro1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title model-up nameAdd" id="exampleModalLabel">Update</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Ảnh</label>
+            <input type='file' id="fileInput"/>
+            <br><img id="myImg" src="#" accept="image/*">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tên Sản Phẩm</label>
+            <input name="nameproup" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Giá</label>
+            <input name="priceup" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Mô Tả</label>
+            <input name="detailup" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Danh mục sản phẩm</label>
+            <br>
+            <select class="price-range-class-up" style="border: 1px solid #e0e0e0;outline: 0 !important; border-radius: 4px; padding: 10px;">
+              <option></option>
+              <option value="1">Fruit</option>
+              <option value="2">Vegetable</option>
+              
+              <!-- Thêm các option khác tùy theo nhu cầu của bạn -->
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" id="update-pro">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+

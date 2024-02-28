@@ -107,7 +107,7 @@
         "customer_email": "phuc@gmail.com",
         "customer_phone_number": "123456",
         "created_date": "2024-12-01",
-        "status": "pending"
+        "idPro": 2
       },
       {
         "id": 2,
@@ -116,7 +116,7 @@
         "customer_email": "phuc@gmail.com",
         "customer_phone_number": "123456",
         "created_date": "2024-12-01",
-        "status": "pending"
+        "idPro": 2
       },
       {
         "id": 3,
@@ -125,7 +125,7 @@
         "customer_email": "phuc@gmail.com",
         "customer_phone_number": "123456",
         "created_date": "2024-12-01",
-        "status": "pending"
+        "idPro": 3
       },
       {
         "id": 4,
@@ -134,7 +134,7 @@
         "customer_email": "phuc@gmail.com",
         "customer_phone_number": "123456",
         "created_date": "2024-12-01",
-        "status": "pending"
+        "idPro": 4
       }
     ],
     "order_details": [

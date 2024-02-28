@@ -10,6 +10,9 @@ import ShopDetails from "./js/shopdetail";
 import Notfound from "./js/notfound";
 import ManageCateAd from "./js/admin/manageCate";
 import AdminDasboard from "./js/admin/adminDasboard";
+import ManageProducts from "./js/admin/manageProducts";
+import ManageOrders from "./js/admin/manageOrders";
+import Detail from "./js/admin/manageDetail";
 
 router
   .on("/", function () {
@@ -46,7 +49,20 @@ router
   .on("/admin/managecategories", function () {
     ManageCateAd.manageCatePage();
     ManageCateAd.handleGetDataCate();
-  });
+  })
+  .on("/admin/manageproducts", function () {
+    ManageProducts.manageProPage();
+    ManageProducts.getDataProductsAll();
+  })
+  .on("/admin/manageorders", function () {
+    ManageOrders.manageOrderPages();
+    ManageOrders.getDataOrder();
+    ManageOrders.handleOrderDetail();
+  })
+  .on("/admin/managedetail", function () {
+    Detail.manageDetailPage();
+  })
+  ;
 
 router.resolve();
 (function ($) {

@@ -1,6 +1,6 @@
 import admin from "../../views/admin.html?raw";
 import manageCateAd from "../../views/manageCateAd.html?raw";
-
+import swal from "sweetalert";
 let cartegoris = [];
 let currentId = null;
 class ManageCateAd {
@@ -12,32 +12,27 @@ class ManageCateAd {
   static handleAddData() {
     let btnAdd = document.getElementById("add");
     btnAdd.addEventListener("click", function () {
-      if (currentId) {
-        ManageCateAd.handleUpdateData();
-      } else {
-        let getName = document.querySelector('input[name="namecate"]').value;
+      let getName = document.querySelector('input[name="namecate"]').value;
 
-        let data = {
-          name: getName,
-        };
-        fetch(
-          "https://asme-9dff4-default-rtdb.firebaseio.com/categories.json",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          }
-        )
-          .then(() => {
-            ManageCateAd.handleGetDataCate();
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        currentId = null;
-      }
+      let data = {
+        name: getName,
+      };
+      fetch("https://asme-9dff4-default-rtdb.firebaseio.com/categories.json", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(() => {
+          ManageCateAd.handleGetDataCate();
+          swal("Đã Thêm!", "Thành Công", "success");
+          $("#exampleModal").modal("hide");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      currentId = null;
     });
   }
 
@@ -46,9 +41,8 @@ class ManageCateAd {
         <tr>
         <th scope="row">${index}</th>
         <td>${item.name}</td>
-        <td><a href="#">Xem Sản Phẩm ${index}</a></td>
         <td>
-        <button id="${item.id}" type="button" class="btn btn-warning btn-edit"   data-bs-toggle="modal" data-bs-target="#exampleModal">Sửa</button>
+        <button id="${item.id}" type="button" class="btn btn-warning btn-edit"   data-bs-toggle="modal" data-bs-target="#updateModalCate">Sửa</button>
         <button data-id="${item.id}" type="button" class="btn btn-danger btn-delete-cate" >Xóa</button>
         </td>
       </tr>
@@ -70,6 +64,7 @@ class ManageCateAd {
           .then(() => {
             console.log("check id", id);
             ManageCateAd.handleGetDataCate();
+            swal("Đã Xóa!", "Thành Công", "success");
           })
           .catch((err) => {
             console.log(err);
@@ -85,36 +80,58 @@ class ManageCateAd {
       btn.addEventListener("click", () => {
         currentId = btn.id;
         console.log("check btn edit", currentId);
-        let currentItem = cartegoris.find((item) => item.id === currentId);
-        document.querySelector('input[name="namecate"]').value = currentItem.name;
+        let currentItem = Object.values(cartegoris).find(
+          (item) => item.id === currentId
+        );
+
+        if (currentItem) {
+          document.querySelector('input[name="namecateup"]').value =
+            currentItem.name;
+        } else {
+          console.log("No data");
+        }
       });
     });
   }
 
   static handleUpdateData() {
-    let getNames = document.querySelector('input[name="namecate"]').value;
+    let btnSave = document.getElementById("update-cate");
+    btnSave.addEventListener("click", () => {
+      let getNames = document.querySelector("input[name='namecateup']").value;
 
-    let data = {
-      name: getNames,
-    };
-    fetch(
-      `https://asme-9dff4-default-rtdb.firebaseio.com/categories/${currentId}.json`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      if (!getNames) {
+        console.log("Name is not dât");
+        return;
       }
-    )
-      .then(() => {
-        console.log("update success");
-        currentId = null;
-        ManageCateAd.handleGetDataCate();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
+      let data = {
+        id: currentId,
+        name: getNames,
+      };
+
+      console.log(data);
+
+      fetch(
+        `https://asme-9dff4-default-rtdb.firebaseio.com/categories/${currentId}.json`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
+        .then(() => {
+          console.log("update success");
+          currentId = null;
+          ManageCateAd.handleGetDataCate();
+          swal("Đã Chỉnh Sửa!", "Thành Công", "success");
+          $("#updateModalCate").modal("hide");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    });
   }
 
   static async handleGetDataCate() {
@@ -126,7 +143,6 @@ class ManageCateAd {
       let data = await response.json();
       cartegoris = data;
       if (cartegoris) {
-        // console.log(cartegoris[1]);
         Object.entries(cartegoris).forEach(([id, item], index) => {
           if (item) {
             item.id = id;
@@ -137,6 +153,7 @@ class ManageCateAd {
         this.handleAddData();
         this.handleDeleteData();
         this.handleEdit();
+        this.handleUpdateData();
       }
     } catch (e) {
       console.log(e);

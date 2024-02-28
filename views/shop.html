@@ -86,11 +86,48 @@
               <h3 id="total"></h3>
                 
                 <div class="d-flex justify-content-center my-4">
-                  <a
-                    href="#"
-                    class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100 check-out"
-                    >Thanh Toán</a
-                  >
+                  
+                       <!-- Button trigger modal -->
+<button type="button" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100 check-out" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Thanh Toán
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title model-up nameAdd" id="exampleModalLabel">Thanh Toán</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Họ Tên</label>
+            <input name="nameCustomer" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Địa Chỉ</label>
+            <input name="address" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Address">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Số Điện Thoại</label>
+            <input name="phone" type="tel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Phone">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" id="check-out">Thêm</button>
+      </div>
+    </div>
+  </div>
+</div>
+                  
                 </div>
               </div>
 
@@ -265,3 +302,6 @@
   </div>
 </div>
 <!-- Fruits Shop End-->
+
+
+
