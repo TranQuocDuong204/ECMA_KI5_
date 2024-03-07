@@ -13,37 +13,78 @@ class ManageCateAd {
     let btnAdd = document.getElementById("add");
     btnAdd.addEventListener("click", function () {
       let getName = document.querySelector('input[name="namecate"]').value;
+      if (getName !== cartegoris[1].name) {
+        if (getName === "") {
+          Toastify({
+            text: "Vui lòng điền thông tin để thêm Danh mục!",
+            duration: 1000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "center",
+            className: "info",
+            backgroundColor: "#81c408",
+            offset: {
+              x: 0, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+              y: 65, // vertical axis - can be a number or a string indicating unity. eg: '2em'
+            },
+          }).showToast();
+        } else {
+          let data = {
+            name: getName,
+          };
+          fetch(
+            "https://asme-9dff4-default-rtdb.firebaseio.com/categories.json",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            }
+          )
+            .then(() => {
+              ManageCateAd.handleGetDataCate();
+              swal("Đã Thêm!", "Thành Công", "success");
+              $("#exampleModal").modal("hide");
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          currentId = null;
+        }
+      } else {
+        Toastify({
+          text: "Danh mục đang tồn tại . Vui lòng nhập Danh mục khác? ",
 
-      let data = {
-        name: getName,
-      };
-      fetch("https://asme-9dff4-default-rtdb.firebaseio.com/categories.json", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then(() => {
-          ManageCateAd.handleGetDataCate();
-          swal("Đã Thêm!", "Thành Công", "success");
-          $("#exampleModal").modal("hide");
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      currentId = null;
+          duration: 1000,
+          close: true,
+          gravity: "top", // `top` or `bottom`
+          position: "center",
+          className: "info",
+
+          backgroundColor: "#81c408",
+
+          offset: {
+            x: 0, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: 65, // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },
+        }).showToast();
+      }
     });
   }
 
   static handleBuildData(item, index) {
     return `
         <tr>
-        <th scope="row">${index}</th>
+        <th scope="row">${index + 1}</th>
         <td>${item.name}</td>
         <td>
-        <button id="${item.id}" type="button" class="btn btn-warning btn-edit"   data-bs-toggle="modal" data-bs-target="#updateModalCate">Sửa</button>
-        <button data-id="${item.id}" type="button" class="btn btn-danger btn-delete-cate" >Xóa</button>
+        <button id="${
+          item.id
+        }" type="button" class="btn btn-warning btn-edit"   data-bs-toggle="modal" data-bs-target="#updateModalCate">Sửa</button>
+        <button data-id="${
+          item.id
+        }" type="button" class="btn btn-danger btn-delete-cate" >Xóa</button>
         </td>
       </tr>
       `;
@@ -100,7 +141,7 @@ class ManageCateAd {
       let getNames = document.querySelector("input[name='namecateup']").value;
 
       if (!getNames) {
-        console.log("Name is not dât");
+        console.log("Name is not data");
         return;
       }
 

@@ -1,6 +1,7 @@
 import admin from "../../views/admin.html?raw";
 import manageProducts from "../../views/manageProducts.html?raw";
 import swal from "sweetalert";
+import Toastify from "toastify-js";
 let products = [];
 let idEdit = null;
 class ManageProducts {
@@ -54,37 +55,57 @@ class ManageProducts {
       let priceRangeElement = document.querySelector(".price-range-class");
       let priceRange = priceRangeElement.value.split("-");
       console.log(globalURL);
-      let data = {
-        id: Number(idpro),
-        name: namePro,
-        price: price,
-        detail: detail,
-        img: globalURL,
-        cate_id: Number(priceRange),
-      };
-      fetch(`https://asme-9dff4-default-rtdb.firebaseio.com/products.json`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then(() => {
-          this.getDataProductsAll();
-          swal("Đã Thêm!", "Thành Công", "success");
-          $("#exampleModal").modal("hide");
+      if (idpro && namePro && price && detail && priceRange) {
+        let data = {
+          id: Number(idpro),
+          name: namePro,
+          price: price,
+          detail: detail,
+          img: globalURL,
+          cate_id: Number(priceRange),
+        };
+
+        fetch(`https://asme-9dff4-default-rtdb.firebaseio.com/products.json`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         })
-        .catch((e) => {
-          console.log("error", e);
-        });
-      idEdit = null;
+          .then(() => {
+            this.getDataProductsAll();
+            swal("Đã Thêm!", "Thành Công", "success");
+            $("#exampleModal").modal("hide");
+          })
+          .catch((e) => {
+            console.log("error", e);
+          });
+        idEdit = null;
+      } else {
+        Toastify({
+          text: "Vui lòng nhập Data để thêm mới!! ",
+
+          duration: 1000,
+          close: true,
+          gravity: "top", // `top` or `bottom`
+          position: "center",
+          className: "info",
+
+          backgroundColor: "#81c408",
+
+          offset: {
+            x: 0, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: 65, // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },
+        }).showToast();
+      }
     });
   }
   static handleDeleteProducts() {
     let getBtnDel = document.querySelectorAll(".btn-delete-pro");
-
     for (let i = 0; i < getBtnDel.length; i++) {
       getBtnDel[i].addEventListener("click", (e) => {
+        swal("Bạn muốn xóa data này!", "Thành Công", "error");
         console.log("check btn delete", getBtnDel[i]);
         console.log("check btn i", i);
         let id = e.target.dataset.id;
@@ -159,34 +180,54 @@ class ManageProducts {
       console.log(globalURL);
       console.log(namePro, idpro, price, detail, priceRange);
       console.log(idpro);
-      let data = {
-        id: Number(idpro),
-        name: namePro,
-        price: price,
-        detail: detail,
-        img: globalURL,
-        cate_id: Number(priceRange),
-      };
-      fetch(
-        `https://asme-9dff4-default-rtdb.firebaseio.com/products/${idEdit}.json`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
+      if(namePro && idpro && price && detail && globalURL) {
+        let data = {
+          id: Number(idpro),
+          name: namePro,
+          price: price,
+          detail: detail,
+          img: globalURL,
+          cate_id: Number(priceRange),
+        };
+        fetch(
+          `https://asme-9dff4-default-rtdb.firebaseio.com/products/${idEdit}.json`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        )
+          .then(() => {
+            console.log("update sucess");
+            idEdit = null;
+            this.getDataProductsAll();
+            swal("Đã Chỉnh Sửa!", "Thành Công", "success");
+            $("#update-pro1").modal("hide");
+          })
+          .catch((e) => {
+            console.log("check error", e);
+          });
+      }else {
+        Toastify({
+          text: "Bạn chưa điền thông tin để update ? ",
+
+          duration: 1000,
+          close: true,
+          gravity: "top", // `top` or `bottom`
+          position: "center",
+          className: "info",
+
+          backgroundColor: "#81c408",
+
+          offset: {
+            x: 0, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: 65, // vertical axis - can be a number or a string indicating unity. eg: '2em'
           },
-          body: JSON.stringify(data),
-        }
-      )
-        .then(() => {
-          console.log("update sucess");
-          idEdit = null;
-          this.getDataProductsAll();
-          swal("Đã Chỉnh Sửa!", "Thành Công", "success");
-          $("#update-pro1").modal("hide");
-        })
-        .catch((e) => {
-          console.log("check error", e);
-        });
+        }).showToast();
+      }
+     
     });
   }
   static async getDataProductsAll() {
@@ -205,7 +246,7 @@ class ManageProducts {
             tableHTML += this.handleBuildProduct(item, index);
           }
         });
-        document.querySelector(".table-data-product").innerHTML =  tableHTML;
+        document.querySelector(".table-data-product").innerHTML = tableHTML;
         this.handleAddProduct();
         this.handleDeleteProducts();
         this.handleGetIdProduct();
